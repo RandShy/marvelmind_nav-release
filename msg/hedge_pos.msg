@@ -1,4 +1,4 @@
-int64 timestamp_ms
+time stamp
 float64 x_m
 float64 y_m
 float64 z_m

@@ -124,12 +124,12 @@ static bool hedgeReceiveCheck(void)
         if (hedge_pos_msg.flags&(1<<1))// flag of timestamp format 
           {
 			hedge_pos_msg.timestamp_ms= position.timestamp;// msec
-			hedge_pos_noaddress_msg.timestamp_ms= position.timestamp;
+			hedge_pos_noaddress_msg.stamp = ros::Time::now();
 		  }	
 	     else 
 	      {
             hedge_pos_msg.timestamp_ms= position.timestamp*15.625;// alpha-cycles ==> msec
-            hedge_pos_noaddress_msg.timestamp_ms= position.timestamp*15.625;
+            hedge_pos_noaddress_msg.stamp = ros::Time::now();
           } 
         hedge_pos_ang_msg.timestamp_ms= position.timestamp;
           
@@ -362,7 +362,7 @@ int main(int argc, char **argv)
   hedge_pos_msg.z_m = 0.0;
   hedge_pos_msg.flags = (1<<0);// 'data not available' flag
   
-  hedge_pos_noaddress_msg.timestamp_ms = 0;
+  hedge_pos_noaddress_msg.stamp = ros::Time();
   hedge_pos_noaddress_msg.x_m = 0.0;
   hedge_pos_noaddress_msg.y_m = 0.0;
   hedge_pos_noaddress_msg.z_m = 0.0;
